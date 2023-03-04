@@ -3,7 +3,7 @@
     <h1>POKE FLIP</h1>
     <h2>Select mode to start</h2>
     <div class="modes">
-      <button @click="onStart(4)">
+      <button @click="onStart(16)">
         <span>4x4</span>
         <span>Easy</span>
       </button>
