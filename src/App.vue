@@ -13,12 +13,14 @@
     :timer="timer"
     @onStartAgain="statusMatch = 'default'"
   />
+  <copy-right v-if="statusMatch === 'default'" />
 </template>
 
 <script>
 import MainScreen from "./components/MainScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
 import ResultScreen from "./components/ResultScreen.vue";
+import CopyRight from "./components/CopyrightScreen.vue";
 
 import { shuffler } from "./utils/array";
 export default {
@@ -27,6 +29,7 @@ export default {
     MainScreen,
     InteractScreen,
     ResultScreen,
+    CopyRight,
   },
   data() {
     return {

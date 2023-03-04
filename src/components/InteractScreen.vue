@@ -20,11 +20,13 @@
         @onflip="checkRule($event)"
       />
     </div>
+    <copy-right />
   </div>
 </template>
 
 <script>
 import CardFlip from "./CardView.vue";
+import CopyRight from "./CopyrightScreen.vue";
 
 export default {
   props: {
@@ -37,6 +39,7 @@ export default {
   },
   components: {
     CardFlip,
+    CopyRight,
   },
   data() {
     return {
