@@ -1,12 +1,34 @@
 <template>
-  <div class="card" :class="{ disabled: isDisable }">
+  <div
+    class="card"
+    :class="{ disabled: isDisable }"
+    :style="{
+      height: `${(920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
+      width: `${
+        (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4
+      }px`,
+    }"
+  >
     <div
       class="card__inner"
       :class="{ 'is-flipped': isFlipped }"
       @click="onToggleFlipCard"
     >
       <div class="card__face card__face--front">
-        <div class="card__content"></div>
+        <div
+          class="card__content"
+          :style="{
+            backgroundSize: `${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px ${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px`,
+          }"
+        ></div>
       </div>
       <div class="card__face card__face--back">
         <div
@@ -29,6 +51,12 @@ export default {
     imgBackFaceUrl: {
       type: String,
       required: true,
+    },
+    cardsContext: {
+      type: Array,
+      default: function () {
+        return [];
+      },
     },
   },
   data() {
@@ -60,8 +88,6 @@ export default {
   display: inline-block;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  width: 90px;
-  height: 120px;
 }
 
 .card__inner {
@@ -90,7 +116,6 @@ export default {
 
 .card__face--front .card__content {
   background: url("../assets/images/icon_back.png") no-repeat center center;
-  background-size: 40px 40px;
   height: 100%;
   width: 100%;
 }

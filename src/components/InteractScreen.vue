@@ -1,14 +1,25 @@
 <template>
   <div class="screen">
-    <h1>Interact Screen</h1>
-    <card-flip
-      v-for="(card, index) in cardsContext"
-      :key="index"
-      :ref="`card-${index}`"
-      :imgBackFaceUrl="`images/${card}.png`"
-      :card="{ index, value: card }"
-      @onflip="checkRule($event)"
-    />
+    <div
+      class="screen__inner"
+      :style="{
+        width: `${
+          ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4 +
+            16) *
+          Math.sqrt(cardsContext.length)
+        }px`,
+      }"
+    >
+      <card-flip
+        v-for="(card, index) in cardsContext"
+        :key="index"
+        :ref="`card-${index}`"
+        :imgBackFaceUrl="`images/${card}.png`"
+        :card="{ index, value: card }"
+        :cardsContext="cardsContext"
+        @onflip="checkRule($event)"
+      />
+    </div>
   </div>
 </template>
 
@@ -75,3 +86,21 @@ export default {
   },
 };
 </script>
+
+<style lang="css" scoped>
+.screen {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.screen__inner {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}
+</style>
